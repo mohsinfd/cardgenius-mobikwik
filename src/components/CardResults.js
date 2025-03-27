@@ -527,7 +527,7 @@ const CardResults = ({ cards, onReset, isLoading, error, category, formData, onA
       <Header>
         <BackButton onClick={onReset}>←</BackButton>
         <Title>
-          CardGenius Recommendations for your {getCategoryTitle(category, isAmazonOnly)} spends of ₹{totalSpend.toLocaleString()}
+          Mobikwik Recommendations for your {getCategoryTitle(category, isAmazonOnly)} spends of ₹{totalSpend.toLocaleString()}
         </Title>
       </Header>
       

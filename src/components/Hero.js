@@ -15,7 +15,7 @@ const floatAnimation = keyframes`
 
 const HeroContainer = styled.div`
   display: ${props => props.$isVisible ? 'block' : 'none'};
-  background: linear-gradient(135deg, #FF6B00, #FF8533);
+  background: #0000FF;
   padding: 4rem 2rem;
   color: white;
   text-align: left;

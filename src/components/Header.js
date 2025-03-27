@@ -76,13 +76,7 @@ const Header = () => {
       <Nav>
         <LogoContainer onClick={handleHomeClick}>
           <Logo />
-          <LogoText>Mobikwik</LogoText>
         </LogoContainer>
-        <MenuItems>
-          <MenuItem href="#about">About</MenuItem>
-          <MenuItem href="#features">Features</MenuItem>
-          <MenuItem href="#contact">Contact</MenuItem>
-        </MenuItems>
       </Nav>
     </HeaderContainer>
   );

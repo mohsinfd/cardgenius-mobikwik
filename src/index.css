@@ -12,9 +12,9 @@ body {
 }
 
 :root {
-  --primary-color: #FF6B00;
-  --primary-light: #FF8533;
-  --secondary-color: #FFF5EB;
+  --primary-color: #0000FF;
+  --primary-light: #3333FF;
+  --secondary-color: #FFD700;
   --text-color: #333;
   --light-gray: #e9ecef;
   --border-radius: 8px;
