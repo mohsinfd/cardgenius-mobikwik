@@ -85,7 +85,6 @@ const Card = styled.div`
   position: absolute;
   width: 280px;
   height: 170px;
-  background: rgba(255, 255, 255, 0.15);
   border-radius: 12px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
   animation: ${floatAnimation} 3s ease-in-out infinite;
@@ -102,7 +101,7 @@ const Card = styled.div`
     left: 20px;
     width: 45px;
     height: 35px;
-    background: rgba(255, 215, 0, 0.8);
+    background: #FFD700;
     border-radius: 6px;
     box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
   }
@@ -131,17 +130,19 @@ const Card = styled.div`
   &:nth-child(2) {
     top: 20px;
     left: 20px;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05));
+    background: linear-gradient(135deg, #0000FF, #3333FF);
     animation-delay: -1.5s;
     z-index: 2;
+    border: 1px solid rgba(255, 255, 255, 0.5);
   }
 
   &:nth-child(3) {
     top: 40px;
     left: 40px;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+    background: linear-gradient(135deg, #FFD700, #FFC000);
     animation-delay: -0.75s;
     z-index: 1;
+    border: 1px solid rgba(255, 255, 255, 0.5);
   }
 
   @media (max-width: 768px) {
