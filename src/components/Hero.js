@@ -15,7 +15,7 @@ const floatAnimation = keyframes`
 
 const HeroContainer = styled.div`
   display: ${props => props.$isVisible ? 'block' : 'none'};
-  background: ${props => props.$isAmazon ? '#131921' : '#0052FF'};
+  background: linear-gradient(135deg, #FF6B00, #FF8533);
   padding: 4rem 2rem;
   color: white;
   text-align: left;
@@ -50,7 +50,7 @@ const Title = styled.h1`
   margin-bottom: 1rem;
   font-weight: 700;
   line-height: 1.2;
-  color: ${props => props.$isAmazon ? '#ffffff' : 'inherit'};
+  color: white;
 
   @media (max-width: 768px) {
     font-size: 2.25rem;
@@ -62,7 +62,7 @@ const Subtitle = styled.p`
   margin-bottom: 2rem;
   opacity: 0.9;
   line-height: 1.6;
-  color: ${props => props.$isAmazon ? '#febd69' : 'inherit'};
+  color: white;
 
   @media (max-width: 768px) {
     font-size: 1.1rem;
@@ -85,46 +85,21 @@ const Card = styled.div`
   position: absolute;
   width: 280px;
   height: 170px;
-  background: ${props => props.$isAmazon ? '#232f3e' : '#0052FF'};
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 12px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
   animation: ${floatAnimation} 3s ease-in-out infinite;
   transform-origin: center center;
   overflow: hidden;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    width: 40px;
-    height: 30px;
-    background: ${props => props.$isAmazon ? '#febd69' : '#FFD700'};
-    border-radius: 4px;
-    opacity: 0.8;
-  }
-
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: 40px;
-    left: 20px;
-    right: 20px;
-    height: 2px;
-    background: ${props => props.$isAmazon ? '#febd69' : 'white'};
-    opacity: 0.3;
-    box-shadow: 0 20px 0 ${props => props.$isAmazon ? '#febd69' : 'white'};
-  }
+  backdrop-filter: blur(10px);
 
   &:nth-child(1) {
-    background: ${props => props.$isAmazon ? '#232f3e' : '#0052FF'};
     z-index: 3;
   }
 
   &:nth-child(2) {
     top: 20px;
     left: 20px;
-    background: ${props => props.$isAmazon ? '#37475a' : '#0039B6'};
     animation-delay: -1.5s;
     z-index: 2;
   }
@@ -132,7 +107,6 @@ const Card = styled.div`
   &:nth-child(3) {
     top: 40px;
     left: 40px;
-    background: ${props => props.$isAmazon ? '#131921' : '#002A85'};
     animation-delay: -0.75s;
     z-index: 1;
   }
@@ -140,19 +114,6 @@ const Card = styled.div`
   @media (max-width: 768px) {
     width: 220px;
     height: 132px;
-
-    &::before {
-      width: 32px;
-      height: 24px;
-      top: 16px;
-      left: 16px;
-    }
-
-    &::after {
-      bottom: 32px;
-      left: 16px;
-      right: 16px;
-    }
   }
 `;
 
@@ -166,26 +127,25 @@ const HeroImage = styled.img`
 
 const Hero = ({ 
   isVisible = true,
-  isAmazon = false,
-  title = "Get the Best Credit Cards for Mobikwik",
-  subtitle = "Compare and find credit cards that maximize your Mobikwik rewards and cashback",
+  title = "Find Your Perfect Credit Card with Mobikwik",
+  subtitle = "Get personalized credit card recommendations based on your spending habits and maximize your rewards",
   imageUrl = null
 }) => {
   return (
-    <HeroContainer $isVisible={isVisible} $isAmazon={isAmazon}>
+    <HeroContainer $isVisible={isVisible}>
       <HeroContent>
         <TextContent>
-          <Title $isAmazon={isAmazon}>{title}</Title>
-          <Subtitle $isAmazon={isAmazon}>{subtitle}</Subtitle>
+          <Title>{title}</Title>
+          <Subtitle>{subtitle}</Subtitle>
         </TextContent>
         <CardContainer>
           {imageUrl ? (
             <HeroImage src={imageUrl} alt="Hero" />
           ) : (
             <>
-              <Card $isAmazon={isAmazon} />
-              <Card $isAmazon={isAmazon} />
-              <Card $isAmazon={isAmazon} />
+              <Card />
+              <Card />
+              <Card />
             </>
           )}
         </CardContainer>

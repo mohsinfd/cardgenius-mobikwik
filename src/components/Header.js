@@ -31,6 +31,7 @@ const LogoContainer = styled.div`
 const LogoText = styled.span`
   font-size: 1.5rem;
   font-weight: 600;
+  color: #FF6B00;
   
   @media (max-width: 768px) {
     font-size: 1.25rem;
@@ -57,7 +58,8 @@ const MenuItem = styled.a`
   cursor: pointer;
 
   &:hover {
-    background: #f5f5f5;
+    background: #FFF5EB;
+    color: #FF6B00;
   }
 `;
 
@@ -74,10 +76,12 @@ const Header = () => {
       <Nav>
         <LogoContainer onClick={handleHomeClick}>
           <Logo />
-          <LogoText>CardGenius</LogoText>
+          <LogoText>Mobikwik</LogoText>
         </LogoContainer>
         <MenuItems>
-          {/* Amazon menu item removed */}
+          <MenuItem href="#about">About</MenuItem>
+          <MenuItem href="#features">Features</MenuItem>
+          <MenuItem href="#contact">Contact</MenuItem>
         </MenuItems>
       </Nav>
     </HeaderContainer>

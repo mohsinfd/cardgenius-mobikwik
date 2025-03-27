@@ -1,6 +1,6 @@
 {
-  "short_name": "Card Savings",
-  "name": "Card Spending to Savings Calculator",
+  "short_name": "Mobikwik Cards",
+  "name": "Mobikwik Credit Card Recommendations",
   "icons": [
     {
       "src": "favicon.ico",
@@ -20,6 +20,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
+  "theme_color": "#FF6B00",
   "background_color": "#ffffff"
 } 

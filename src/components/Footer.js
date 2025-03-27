@@ -17,7 +17,7 @@ const FooterText = styled.p`
 const Footer = () => {
   return (
     <FooterContainer>
-      <FooterText>© 2024 CardGenius. All rights reserved.</FooterText>
+      <FooterText>© 2024 Mobikwik. All rights reserved.</FooterText>
     </FooterContainer>
   );
 };
