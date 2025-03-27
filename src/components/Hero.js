@@ -85,21 +85,53 @@ const Card = styled.div`
   position: absolute;
   width: 280px;
   height: 170px;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.15);
   border-radius: 12px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
   animation: ${floatAnimation} 3s ease-in-out infinite;
   transform-origin: center center;
   overflow: hidden;
   backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 20px;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 45px;
+    height: 35px;
+    background: rgba(255, 215, 0, 0.8);
+    border-radius: 6px;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 70px;
+    left: 20px;
+    right: 20px;
+    height: 40px;
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.15) 0%,
+      rgba(255, 255, 255, 0.25) 50%,
+      rgba(255, 255, 255, 0.15) 100%
+    );
+    border-radius: 4px;
+  }
 
   &:nth-child(1) {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
     z-index: 3;
   }
 
   &:nth-child(2) {
     top: 20px;
     left: 20px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05));
     animation-delay: -1.5s;
     z-index: 2;
   }
@@ -107,6 +139,7 @@ const Card = styled.div`
   &:nth-child(3) {
     top: 40px;
     left: 40px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
     animation-delay: -0.75s;
     z-index: 1;
   }
@@ -114,6 +147,21 @@ const Card = styled.div`
   @media (max-width: 768px) {
     width: 220px;
     height: 132px;
+    padding: 15px;
+
+    &::before {
+      top: 15px;
+      left: 15px;
+      width: 35px;
+      height: 27px;
+    }
+
+    &::after {
+      top: 55px;
+      left: 15px;
+      right: 15px;
+      height: 30px;
+    }
   }
 `;
 
