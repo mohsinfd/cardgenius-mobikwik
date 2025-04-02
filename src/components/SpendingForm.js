@@ -77,7 +77,7 @@ const StyledSlider = styled(ReactSlider)`
 const StyledThumb = styled.div`
   height: 20px;
   width: 20px;
-  background-color: #0000FF;
+  background-color: var(--primary-color);
   border-radius: 50%;
   cursor: grab;
   display: flex;
@@ -85,18 +85,18 @@ const StyledThumb = styled.div`
   align-items: center;
   top: -6px;
   outline: none;
-  box-shadow: 0 2px 8px rgba(0, 0, 255, 0.3);
+  box-shadow: 0 2px 8px rgba(0, 160, 220, 0.3);
   transition: all 0.2s ease;
   
   &:hover {
     transform: scale(1.15);
-    box-shadow: 0 4px 12px rgba(0, 0, 255, 0.4);
+    box-shadow: 0 4px 12px rgba(0, 160, 220, 0.4);
   }
   
   &:active {
     cursor: grabbing;
     transform: scale(1.2);
-    box-shadow: 0 6px 16px rgba(0, 0, 255, 0.5);
+    box-shadow: 0 6px 16px rgba(0, 160, 220, 0.5);
   }
 `;
 
@@ -105,7 +105,7 @@ const StyledTrack = styled.div`
   bottom: 0;
   border-radius: 999px;
   height: 8px;
-  background: ${props => props.$index === 0 ? 'linear-gradient(90deg, #0000FF, #3333FF)' : '#f0f0f0'};
+  background: ${props => props.$index === 0 ? 'linear-gradient(90deg, var(--primary-color), var(--primary-light))' : '#f0f0f0'};
 `;
 
 const ValueDisplay = styled.div`
@@ -113,7 +113,7 @@ const ValueDisplay = styled.div`
   margin-top: 1.5rem;
   font-size: 1.6rem;
   font-weight: 600;
-  color: #0000FF;
+  color: var(--primary-color);
   position: relative;
 
   input {
@@ -138,7 +138,7 @@ const ValueDisplay = styled.div`
 `;
 
 const NextButton = styled.button`
-  background: linear-gradient(90deg, #0000FF, #3333FF);
+  background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
   color: white;
   border: none;
   padding: 1rem 2rem;
@@ -153,8 +153,8 @@ const NextButton = styled.button`
   
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 255, 0.3);
-    background: linear-gradient(90deg, #3333FF, #0000FF);
+    box-shadow: 0 4px 12px rgba(0, 160, 220, 0.3);
+    background: linear-gradient(90deg, var(--primary-light), var(--primary-color));
   }
   
   &:active {
@@ -361,7 +361,7 @@ const SpendingForm = ({ category, onSubmit, onBack, isAmazonOnly }) => {
                       top: '-30px', 
                       left: '50%', 
                       transform: 'translateX(-50%)',
-                      background: '#ff6b00',
+                      background: 'var(--primary-color)',
                       color: 'white',
                       padding: '4px 8px',
                       borderRadius: '4px',

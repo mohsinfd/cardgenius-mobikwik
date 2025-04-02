@@ -5,9 +5,9 @@ import { isAuthenticated } from '../utils/auth';
 import { toast } from 'react-hot-toast';
 
 const ApplyButton = styled.a`
-  background: ${props => props.$hollow ? 'transparent' : '#0052FF'};
-  color: ${props => props.$hollow ? '#0052FF' : 'white'};
-  border: 2px solid #0052FF;
+  background: ${props => props.$hollow ? 'transparent' : 'var(--primary-color)'};
+  color: ${props => props.$hollow ? 'var(--primary-color)' : 'white'};
+  border: 2px solid var(--primary-color);
   display: inline-block;
   padding: 0.8rem 1.5rem;
   border-radius: 6px;
@@ -24,7 +24,7 @@ const ApplyButton = styled.a`
   }
 
   &:hover {
-    background: ${props => props.$hollow ? '#0052FF' : '#0039B6'};
+    background: ${props => props.$hollow ? 'var(--primary-color)' : 'var(--primary-light)'};
     color: white;
   }
 `;
@@ -129,7 +129,7 @@ const CardContainer = styled.div`
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   transition: transform 0.2s ease;
   ${props => props.$isTopCard && `
-    border: 2px solid #0052FF;
+    border: 2px solid var(--primary-color);
     
     @media (min-width: 768px) {
       display: flex;
@@ -166,7 +166,7 @@ const CardHeader = styled.div`
 const CardTitle = styled.h3`
   margin: 0;
   font-size: 1.4rem;
-  color: #0052FF;
+  color: var(--primary-color);
   font-weight: 600;
   text-decoration: underline;
   cursor: pointer;
@@ -176,7 +176,7 @@ const CardTitle = styled.h3`
     text-decoration: inherit;
     
     &:hover {
-      color: #0039B6;
+      color: var(--primary-light);
     }
   }
   
@@ -236,7 +236,7 @@ const CardItem = styled.div`
   padding: 1.5rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease;
-  border: ${props => props.rank <= 3 ? `2px solid ${props.rank === 1 ? '#febd69' : props.rank === 2 ? '#37475a' : '#232f3e'}` : 'none'};
+  border: ${props => props.rank <= 3 ? `2px solid ${props.rank === 1 ? 'var(--primary-color)' : props.rank === 2 ? 'var(--primary-light)' : 'var(--text-color)'}` : 'none'};
   position: relative;
   overflow: hidden;
   text-decoration: none;
@@ -413,7 +413,7 @@ const BenefitsList = styled.ul`
   margin: 0;
 `;
 
-const CardResults = ({ cards, onReset, isLoading, error, category, formData, onAuthClick, isAuthenticated, isAmazonOnly, tagId, maxUsps }) => {
+const CardResults = ({ cards, onReset, isLoading, error, category, formValues, onAuthClick, isAuthenticated, isAmazonOnly, tagId, maxUsps }) => {
   console.log('CardResults received cards:', cards);
   const [visibleCards, setVisibleCards] = useState([]);
   const [showLoadingScreen, setShowLoadingScreen] = useState(false);
@@ -432,27 +432,24 @@ const CardResults = ({ cards, onReset, isLoading, error, category, formData, onA
     setShowLoadingScreen(false);
   };
 
-  const getCategoryTitle = (category, isAmazonOnly) => {
-    if (isAmazonOnly) {
-      return 'Amazon Shopping';
+  const calculateTotalSpends = () => {
+    if (!formValues) return 0;
+    return Object.values(formValues).reduce((sum, value) => sum + (parseInt(value) || 0), 0);
+  };
+
+  const getCategoryTitle = () => {
+    if (isAmazonOnly) return 'Amazon';
+    switch(category) {
+      case 'shopping': return 'Shopping';
+      case 'online-food-ordering': return 'Food Ordering';
+      case 'bill-payments': return 'Bill Payments';
+      case 'travel': return 'Travel';
+      default: return category;
     }
-
-    const categoryTitles = {
-      'shopping': 'Shopping',
-      'travel': 'Travel',
-      'dining': 'Dining',
-      'grocery': 'Grocery',
-      'bills': 'Utility Bills',
-      'fuel': 'Fuel',
-      'online-food-ordering': 'Online Food Ordering'
-    };
-    return categoryTitles[category] || category;
   };
 
-  const calculateTotalSpend = (formData) => {
-    if (!formData) return 0;
-    return Object.values(formData).reduce((sum, value) => sum + (Number(value) || 0), 0);
-  };
+  const totalSpends = calculateTotalSpends();
+  const title = `JioCredit Recommendations for your ${getCategoryTitle()} spends of ₹${totalSpends.toLocaleString()}`;
 
   if (showLoadingScreen) {
     return <LoadingScreen onComplete={handleLoadingComplete} />;
@@ -520,15 +517,11 @@ const CardResults = ({ cards, onReset, isLoading, error, category, formData, onA
     ));
   };
 
-  const totalSpend = calculateTotalSpend(formData);
-
   return (
     <Container>
       <Header>
         <BackButton onClick={onReset}>←</BackButton>
-        <Title>
-          Mobikwik Recommendations for your {getCategoryTitle(category, isAmazonOnly)} spends of ₹{totalSpend.toLocaleString()}
-        </Title>
+        <Title>{title}</Title>
       </Header>
       
           <TopCardsSection>
@@ -562,7 +555,7 @@ const CardResults = ({ cards, onReset, isLoading, error, category, formData, onA
               </CardHeader>
               <CardInfo>
                 <CardSavings>
-                  Your {getCategoryTitle(category, isAmazonOnly)} Savings: ₹{card.annual_saving.toLocaleString()}
+                  Your {getCategoryTitle()} Savings: ₹{card.annual_saving.toLocaleString()}
                 </CardSavings>
                 <BenefitsList>
                   {renderBenefits(card)}
@@ -608,7 +601,7 @@ const CardResults = ({ cards, onReset, isLoading, error, category, formData, onA
               </CardHeader>
               <CardInfo>
                 <CardSavings>
-                  Your {getCategoryTitle(category, isAmazonOnly)} Savings: ₹{card.annual_saving.toLocaleString()}
+                  Your {getCategoryTitle()} Savings: ₹{card.annual_saving.toLocaleString()}
                 </CardSavings>
                 <BenefitsList>
                   {renderBenefits(card)}

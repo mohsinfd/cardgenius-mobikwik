@@ -8,7 +8,7 @@ import Footer from './components/Footer';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import { getCardRecommendations } from './api/cardsApi';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 
 const AppContainer = styled.div`
@@ -22,6 +22,15 @@ const MainContent = styled.main`
   flex: 1;
   padding-bottom: 60px;
 `;
+
+const HomePage = ({ onCategorySelect }) => {
+  return (
+    <>
+      <Hero isVisible={true} />
+      <CategoryList onCategorySelect={onCategorySelect} />
+    </>
+  );
+};
 
 const App = () => {
   const [selectedCategory, setSelectedCategory] = useState(null);
@@ -81,44 +90,45 @@ const App = () => {
     setError(null);
   };
 
+  const renderMainContent = () => {
+    if (!selectedCategory) {
+      return <HomePage onCategorySelect={handleCategorySelect} />;
+    }
+    
+    if (!cards || cards.length === 0) {
+      return (
+        <SpendingForm
+          category={selectedCategory}
+          onSubmit={handleFormSubmit}
+          onBack={handleBack}
+        />
+      );
+    }
+    
+    return (
+      <CardResults
+        cards={cards}
+        onReset={handleResultsBack}
+        isLoading={isLoading}
+        error={error}
+        category={selectedCategory}
+        formData={formData}
+      />
+    );
+  };
+
   return (
-    <Router>
-      <AppContainer>
-        <Header />
-        <MainContent>
-          <Routes>
-            <Route path="/" element={
-              <AppContainer>
-                {!selectedCategory ? (
-                  <>
-                    <Hero isVisible={true} />
-                    <CategoryList onCategorySelect={handleCategorySelect} />
-                  </>
-                ) : !cards || cards.length === 0 ? (
-                  <SpendingForm
-                    category={selectedCategory}
-                    onSubmit={handleFormSubmit}
-                    onBack={handleBack}
-                  />
-                ) : (
-                  <CardResults
-                    cards={cards}
-                    onReset={handleResultsBack}
-                    isLoading={isLoading}
-                    error={error}
-                    category={selectedCategory}
-                    formData={formData}
-                  />
-                )}
-              </AppContainer>
-            } />
-            <Route path="/amazon-cards" element={<AmazonCardResults />} />
-          </Routes>
-        </MainContent>
-        <Footer />
-        <Toaster position="top-right" />
-      </AppContainer>
-    </Router>
+    <AppContainer>
+      <Header />
+      <MainContent>
+        <Routes>
+          <Route path="/" element={renderMainContent()} />
+          <Route path="/amazon-cards" element={<AmazonCardResults />} />
+        </Routes>
+      </MainContent>
+      <Footer />
+      <Toaster position="top-right" />
+    </AppContainer>
   );
 };
 

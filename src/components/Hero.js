@@ -15,7 +15,7 @@ const floatAnimation = keyframes`
 
 const HeroContainer = styled.div`
   display: ${props => props.$isVisible ? 'block' : 'none'};
-  background: #0000FF;
+  background: var(--primary-color);
   padding: 4rem 2rem;
   color: white;
   text-align: left;
@@ -101,7 +101,7 @@ const Card = styled.div`
     left: 20px;
     width: 45px;
     height: 35px;
-    background: #FFD700;
+    background: var(--secondary-color);
     border-radius: 6px;
     box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
   }
@@ -123,14 +123,14 @@ const Card = styled.div`
   }
 
   &:nth-child(1) {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+    background: linear-gradient(135deg, var(--primary-color), #f5e6cc);
     z-index: 3;
   }
 
   &:nth-child(2) {
     top: 20px;
     left: 20px;
-    background: linear-gradient(135deg, #0000FF, #3333FF);
+    background: linear-gradient(135deg, #f5e6cc, #c17f1d);
     animation-delay: -1.5s;
     z-index: 2;
     border: 1px solid rgba(255, 255, 255, 0.5);
@@ -139,7 +139,7 @@ const Card = styled.div`
   &:nth-child(3) {
     top: 40px;
     left: 40px;
-    background: linear-gradient(135deg, #FFD700, #FFC000);
+    background: linear-gradient(135deg, #c17f1d, var(--primary-color));
     animation-delay: -0.75s;
     z-index: 1;
     border: 1px solid rgba(255, 255, 255, 0.5);
@@ -176,8 +176,8 @@ const HeroImage = styled.img`
 
 const Hero = ({ 
   isVisible = true,
-  title = "Find Your Perfect Credit Card with Mobikwik",
-  subtitle = "Get personalized credit card recommendations based on your spending habits and maximize your rewards",
+  title = "Find Your Perfect Credit Card with JioCredit",
+  subtitle = "Get personalized credit card recommendations based on your spending habits and maximize your rewards with JioCredit's exclusive offers",
   imageUrl = null
 }) => {
   return (

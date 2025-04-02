@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
 import Logo from './Logo';
 
 const HeaderContainer = styled.header`
@@ -23,19 +22,6 @@ const Nav = styled.nav`
 const LogoContainer = styled.div`
   display: flex;
   align-items: center;
-  text-decoration: none;
-  color: inherit;
-  cursor: pointer;
-`;
-
-const LogoText = styled.span`
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #FF6B00;
-  
-  @media (max-width: 768px) {
-    font-size: 1.25rem;
-  }
 `;
 
 const MenuItems = styled.div`
@@ -58,25 +44,21 @@ const MenuItem = styled.a`
   cursor: pointer;
 
   &:hover {
-    background: #FFF5EB;
-    color: #FF6B00;
+    background: var(--light-gray);
+    color: var(--primary-color);
   }
 `;
 
 const Header = () => {
-  const navigate = useNavigate();
-
-  const handleHomeClick = (e) => {
-    e.preventDefault();
-    navigate('/');
-  };
-
   return (
     <HeaderContainer>
       <Nav>
-        <LogoContainer onClick={handleHomeClick}>
+        <LogoContainer>
           <Logo />
         </LogoContainer>
+        <MenuItems>
+          {/* Add menu items here if needed */}
+        </MenuItems>
       </Nav>
     </HeaderContainer>
   );

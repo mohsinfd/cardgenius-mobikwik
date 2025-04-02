@@ -1,32 +1,32 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
-const LogoContainer = styled.div`
-  width: 120px;
-  height: 40px;
-  margin-right: 0.75rem;
-  
-  @media (max-width: 768px) {
-    width: 100px;
-    height: 32px;
-  }
+const StyledLink = styled(Link)`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  cursor: pointer;
+`;
 
-  svg {
-    width: 100%;
-    height: 100%;
-  }
+const LogoImage = styled.img`
+  height: 32px;
+  width: auto;
+`;
+
+const LogoText = styled.span`
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-color);
 `;
 
 const Logo = () => {
   return (
-    <LogoContainer>
-      <svg viewBox="0 0 300 100" xmlns="http://www.w3.org/2000/svg">
-        <text x="50%" y="50%" dominantBaseline="middle" textAnchor="middle" 
-          fill="#0000FF" fontSize="48" fontFamily="Arial, sans-serif" fontWeight="bold">
-          Mobikwik
-        </text>
-      </svg>
-    </LogoContainer>
+    <StyledLink to="/">
+      <LogoImage src="https://jep-asset.akamaized.net/cms/assets/jioapps/jfs/newsvg.svg" alt="JioCredit Logo" />
+      <LogoText>JioCredit</LogoText>
+    </StyledLink>
   );
 };
 
